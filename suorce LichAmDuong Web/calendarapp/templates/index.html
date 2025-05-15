@@ -1,8 +1,10 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Lịch Âm Dương</title>
+	<link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
     <style>
         body { font-family: Arial; text-align: center; }
         .calendar { display: inline-block; border-collapse: collapse; }
@@ -220,7 +222,7 @@
         </tr>
         {% endfor %}
     </table>
-
+	
     <script>
         function updateClock() {
             const now = new Date();

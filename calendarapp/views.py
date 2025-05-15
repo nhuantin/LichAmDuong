@@ -40,14 +40,6 @@ def calendar_view(request):
             "leap_month": lunar_date["leap"],  # Tháng nhuận hay không
         }
     
-    # Kiểm tra sự kiện Phật giáo
-    event = None
-    event_image_url = None
-    if lunar_date:
-        event = get_buddha_event(lunar_date["day"], lunar_date["month"])
-        if event:
-            event_image_url = event[1]  # URL của hình ảnh sự kiện
-    
     # Tạo danh sách 35 ngày (5 tuần)
     days = []
     temp_date = start_date - timedelta(days=start_date.weekday())  # Bắt đầu từ Thứ 2 đầu tiên
@@ -81,7 +73,5 @@ def calendar_view(request):
             "pl": get_buddhist_year(current_date),
         },
         "lunar_month_info": lunar_month_info,  # Thông tin về tháng âm lịch
-        "event": event,  # Thông tin sự kiện
-        "event_image_url": event_image_url,  # URL hình ảnh sự kiện
     }
     return render(request, "index.html", context)

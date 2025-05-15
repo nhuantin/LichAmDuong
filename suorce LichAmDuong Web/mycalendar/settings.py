@@ -1,11 +1,16 @@
 from pathlib import Path
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-your-secret-key'
-DEBUG = True
-ALLOWED_HOSTS = []
+# Bảo mật SECRET_KEY và DEBUG
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'default-secret-key')
+DEBUG = os.getenv('DJANGO_DEBUG', 'True') == 'True'
 
+# Cấu hình ALLOWED_HOSTS
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
+
+# Ứng dụng cài đặt
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -13,7 +18,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'calendarapp.apps.CalendarappConfig',  # Thêm dòng này nếu chưa có
+    'calendarapp.apps.CalendarappConfig',  # Thêm ứng dụng của bạn
 ]
 
 MIDDLEWARE = [
@@ -46,6 +51,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mycalendar.wsgi.application'
 
+# Cấu hình cơ sở dữ liệu
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -53,10 +59,18 @@ DATABASES = {
     }
 }
 
+# Cấu hình ngôn ngữ và múi giờ
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'Asia/Ho_Chi_Minh'
 USE_I18N = True
 USE_TZ = True
 
+# Cấu hình tệp tĩnh và media
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

@@ -28,6 +28,18 @@ def calendar_view(request):
     # Chuyển đổi ngày dương sang âm lịch
     lunar_date = convert_to_lunar(current_date)
 
+    # Tính toán dữ liệu lịch
+    start_date = current_date.replace(day=1)
+    end_date = (start_date + timedelta(days=32)).replace(day=1) - timedelta(days=1)
+    
+    # Thông tin tháng âm lịch
+    lunar_month_info = None
+    if lunar_date:
+        lunar_month_info = {
+            "days_in_month": lunar_date["days_in_month"],  # Số ngày trong tháng âm lịch
+            "leap_month": lunar_date["leap"],  # Tháng nhuận hay không
+        }
+    
     # Kiểm tra sự kiện Phật giáo
     event = None
     event_image_url = None
@@ -35,10 +47,6 @@ def calendar_view(request):
         event = get_buddha_event(lunar_date["day"], lunar_date["month"])
         if event:
             event_image_url = event[1]  # URL của hình ảnh sự kiện
-
-    # Tính toán dữ liệu lịch
-    start_date = current_date.replace(day=1)
-    end_date = (start_date + timedelta(days=32)).replace(day=1) - timedelta(days=1)
     
     # Tạo danh sách 35 ngày (5 tuần)
     days = []
@@ -72,6 +80,7 @@ def calendar_view(request):
             "lunar_year": get_can_chi(lunar_date["year"]) if lunar_date else "",
             "pl": get_buddhist_year(current_date),
         },
+        "lunar_month_info": lunar_month_info,  # Thông tin về tháng âm lịch
         "event": event,  # Thông tin sự kiện
         "event_image_url": event_image_url,  # URL hình ảnh sự kiện
     }

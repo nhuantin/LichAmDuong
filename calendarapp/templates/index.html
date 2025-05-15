@@ -75,7 +75,18 @@
         <h3 id="clock" style="display: inline-block; margin: 0;"></h3>
     </div>
     
-    <!-- Hiển thị sự kiện nếu có -->
+    <!-- Hiển thị thông tin tháng âm lịch -->
+    {% if lunar_month_info %}
+    <div class="month-info">
+        {% if lunar_month_info.days_in_month == 29 %}
+            T
+        {% elif lunar_month_info.days_in_month == 30 %}
+            Đ
+        {% endif %}
+    </div>
+    {% endif %}
+	
+	<!-- Hiển thị sự kiện nếu có -->
     {% if event %}
     <div class="event">
         <h3>{{ event.0 }}</h3>

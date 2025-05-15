@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Lịch Âm Dương</title>
+    <style>
+        body { font-family: Arial; text-align: center; }
+        .calendar { display: inline-block; border-collapse: collapse; }
+        .calendar td, .calendar th { 
+            border: 1px solid #ccc; 
+            padding: 5px; 
+            width: 30px; /* Điều chỉnh chiều rộng */
+            height: 30px; /* Điều chỉnh chiều cao */
+            text-align: center; /* Căn giữa nội dung theo chiều ngang */
+            vertical-align: top; /* Căn nội dung về phía trên */
+        }
+		/* CSS cho form */
+        form {
+            margin-top: 0px;
+        }
+        /* CSS cho ô input ngày */
+        #day-input {
+            width: 35px; /* Chiều rộng nhỏ hơn */
+            font-size: 12px; /* Kích thước chữ nhỏ */
+            text-align: center; /* Căn giữa nội dung */
+            padding: 2px; /* Khoảng cách bên trong */
+        }
+
+        /* CSS cho ô input tháng */
+        #month-input {
+            width: 35px; /* Chiều rộng trung bình */
+            font-size: 12px; /* Kích thước chữ nhỏ */
+            text-align: center; /* Căn giữa nội dung */
+            padding: 2px; /* Khoảng cách bên trong */
+        }
+
+        /* CSS cho ô input năm */
+        #year-input {
+            width: 50px; /* Chiều rộng lớn hơn */
+            font-size: 14px; /* Kích thước chữ lớn hơn */
+            text-align: center; /* Căn giữa nội dung */
+            padding: 2px; /* Khoảng cách bên trong */
+        }
+
+        /* CSS cho các nút */
+        button {
+            font-size: 12px; /* Kích thước chữ nhỏ hơn */
+            padding: 0px 0px; /* Khoảng cách bên trong nút */
+            margin-left: 0px; /* Khoảng cách giữa các nút */
+        }
+        .calendar th {
+            height: 25px; /* Chiều cao nhỏ hơn cho tiêu đề */
+            font-size: 0.8em; /* Kích thước chữ nhỏ hơn */
+        }
+        .calendar .cn { 
+            color: red; /* Màu chữ đỏ cho cột "CN" */
+        }
+        .today { 
+            background-color: lightblue; /* Màu nền cho ngày hiện tại */
+        }
+        .solar {
+            font-size: 0.9em; /* Kích thước chữ nhỏ hơn cho ngày dương lịch */
+            font-weight: bold; /* In đậm ngày dương lịch */
+        }
+        .lunar {
+            font-size: 0.6em; /* Kích thước chữ nhỏ hơn cho ngày âm lịch */
+            color: #0086ff; /* Màu chữ xám cho ngày âm lịch */
+            margin-top: 2px; /* Thêm khoảng cách */
+        }
+        h2 {
+            font-size: 1.5em; /* Kích thước chữ cho tiêu đề ngày hiện tại */
+            font-weight: bold; /* In đậm tiêu đề */
+            margin: 5px 0; /* Giảm khoảng cách trên/dưới */
+			color: red;
+        }
+        h3 {
+            font-size: 1.5em; /* Kích thước chữ cho phần âm lịch và Phật lịch */
+            margin: 5px 0; /* Giảm khoảng cách trên/dưới */
+        }
+        #clock, .pl {
+            font-size: 1.5em; /* Kích thước chữ cho đồng hồ và PL */
+            display: inline-block; /* Hiển thị trên cùng một dòng */
+            margin: 0; /* Loại bỏ khoảng cách */
+			color: red;
+        }
+        .event {
+            margin-top: 10px;
+        }
+        .event img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        /* Container chính */
+        .info-container {
+            display: flex; /* Flexbox để nội dung trên cùng một hàng */
+            justify-content: center; /* Căn giữa nội dung */
+            align-items: center; /* Căn giữa theo chiều dọc */
+            gap: 10px; /* Khoảng cách giữa các border */
+            margin-top: 0px;
+        }
+
+        /* Border ngày tháng năm âm lịch */
+        .lunar-container {
+            display: inline-block; /* Co giãn theo nội dung */
+            position: relative; /* Làm tham chiếu cho "T" hoặc "Đ" */
+            padding: 2px 2px;
+            
+            border-radius: 10px; /* Bo góc */
+            text-align: center; /* Căn giữa nội dung */
+        }
+
+        /* Border Can Chi */
+        .can-chi-container {
+            display: inline-block; /* Co giãn theo nội dung */
+            padding: 2px 2px;
+            
+            border-radius: 10px; /* Bo góc */
+            text-align: center; /* Căn giữa nội dung */
+        }
+
+        /* Chữ "T" hoặc "Đ" neo trong Lunar Container */
+        .month-info {
+            position: absolute; /* Đặt chữ "T" hoặc "Đ" vào góc */
+            top: -4px; /* Đẩy lên trên */
+            right: -8px; /* Đẩy sang phải */
+            font-size: 01.2em;
+            font-weight: bold;
+            color: red;
+            
+            
+            padding: 0px 0px; /* Khoảng cách bên trong chữ */
+            border-radius: 0px; /* Bo góc cho chữ */
+        }
+
+        /* Nội dung ngày/tháng/năm âm lịch */
+        .lunar-text {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #0092ff;
+        }
+
+        /* Nội dung Can Chi */
+        .can-chi-text {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #0092ff;
+        }
+    </style>
+</head>
+<body>
+    <form method="get">
+        Tìm ngày: 
+        <input type="number" name="day" id="day-input" value="{{ info.solar_day }}" min="0" max="31">
+        / <input type="number" name="month" id="month-input" value="{{ info.solar_month }}" min="0" max="12">
+        / <input type="number" name="year" id="year-input" value="{{ info.solar_year }}" min="0" max="9999">
+        <button type="submit">Xem</button>
+        <button type="button" id="today-button">Hôm nay</button>
+    </form>
+
+    <h2>{{ info.weekday }} {{ info.solar_day }}/{{ info.solar_month }}/{{ info.solar_year }}</h2>
+
+    <!-- Container tháng âm lịch -->
+    <div class="info-container">
+        <!-- Container ngày tháng năm âm lịch -->
+        <div class="lunar-container">
+            <!-- Chữ "T" hoặc "Đ" neo ở góc -->
+            {% if lunar_month_info %}
+            <div class="month-info">
+                {% if lunar_month_info.days_in_month == 29 %}
+                    T
+                {% elif lunar_month_info.days_in_month == 30 %}
+                    Đ
+                {% endif %}
+            </div>
+            {% endif %}
+
+            <!-- Nội dung ngày/tháng âm lịch -->
+            <div class="lunar-text">
+                Âm lịch: {{ info.lunar_day }}/{{ info.lunar_month }}
+                {% if info.leap %}Nhuận{% endif %}
+            </div>
+        </div>
+
+        <!-- Container Can Chi -->
+        <div class="can-chi-container">
+            <div class="can-chi-text">
+                {{ info.lunar_year }}
+            </div>
+        </div>
+    </div>
+
+    <div style="margin: 0px 0;">
+		<h3 id="clock" style="display: inline-block; margin: 0;"></h3>
+        <h3 style="color:red; display: inline-block; margin: 0;">PL: {{ info.pl }}</h3>
+    </div>
+
+    <!-- Hiển thị bảng lịch -->
+    <table class="calendar">
+        <tr>
+            <th>T2</th>
+            <th>T3</th>
+            <th>T4</th>
+            <th>T5</th>
+            <th>T6</th>
+            <th>T7</th>
+            <th class="cn">CN</th>
+        </tr>
+        {% for week in weeks %}
+        <tr>
+            {% for day in week %}
+            <td {% if day.is_today %}class="today"{% endif %}>
+                {% if day.solar_day %}
+                    <div class="solar">{{ day.solar_day }}</div>
+                    <div class="lunar">{{ day.lunar_day }}/{{ day.lunar_month }}</div>
+                {% endif %}
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const h = String(now.getHours()).padStart(2, '0');
+            const m = String(now.getMinutes()).padStart(2, '0');
+            const s = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById("clock").innerText = h + ":" + m + ":" + s;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Xử lý sự kiện cho nút "Hôm nay"
+        document.getElementById("today-button").addEventListener("click", function() {
+            const today = new Date();
+            document.getElementById("day-input").value = today.getDate();
+            document.getElementById("month-input").value = today.getMonth() + 1; // Tháng bắt đầu từ 0
+            document.getElementById("year-input").value = today.getFullYear();
+
+            // Tự động gửi biểu mẫu sau khi điền ngày hiện tại
+            this.form.submit();
+        });
+    </script>
+</body>
+</html>

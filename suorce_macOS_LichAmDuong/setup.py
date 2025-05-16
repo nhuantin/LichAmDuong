@@ -3,42 +3,49 @@ from setuptools import setup
 APP = ['LichAmDuong.py']
 DATA_FILES = [
     ('fonts', ['fonts/arial.ttf']),
-    # Thêm các thư mục/resources khác nếu có
++   ('icons', ['icon.icns', 'icon.ico'])  # Thêm icons
 ]
 
 OPTIONS = {
-    'argv_emulation': False,  # Nên tắt nếu ứng dụng không xử lý argument
-    'iconfile': 'icon.icns',
-    'packages': [  # Thêm các package cần thiết
-        'pystray',
-        'requests',
-        'PIL',
-        'packaging',
-        'lunarcalendar',
-        'tkinter'
-    ],
-    'includes': [  # Các module cần include thủ công
-        'lunarcalendar.convert',
-        'lunarcalendar.solarterm',
-        'PIL.Image',
-        'PIL.ImageTk',
-        'pystray._darwin'
-    ],
-    'excludes': ['PyQt5', 'PySide2'],  # Loại bỏ package không dùng
-    'resources': ['fonts/arial.ttf'],
-    'plist': {
-        'CFBundleName': 'LichAmDuong',
-        'CFBundleShortVersionString': '1.0.1',
-        'CFBundleVersion': '1.0.1',
-        'NSHumanReadableCopyright': 'Copyright © 2023 Your Name'
-    }
+-    'argv_emulation': True,
++    'argv_emulation': False,  # Tắt cho ứng dụng GUI
+     'iconfile': 'icon.icns',
++    'packages': ['pystray', 'PIL', 'lunarcalendar'],  # Thêm packages
+     'includes': [
+         'pystray',
+-        'requests',
+-        'PIL',
+-        'packaging',
+-        'lunarcalendar', 
+-        'tkinter',
+-        'calendar',
+-        'threading',
+-        'webbrowser',
+-        'time',
+-        'datetime',
+-        'io',
+-        'sys',
++        'pystray._darwin',  # Quan trọng cho macOS
++        'PIL.Image',
++        'PIL.ImageTk',
++        'lunarcalendar.convert',
++        'lunarcalendar.solarterm'
+     ],
+-    'resources': ['fonts/arial.ttf'],
++    'resources': ['fonts', 'icons'],  # Thêm toàn bộ thư mục
++    'plist': {
++        'CFBundleName': 'LichAmDuong',
++        'CFBundleDisplayName': "Lịch Âm Dương",
++        'CFBundleIdentifier': "com.nhuantin.LichAmDuong",
++        'NSRequiresAquaSystemAppearance': False  # Dark mode support
++    }
 }
 
 setup(
-    name="LichAmDuong",
-    version="1.0.1",
     app=APP,
     data_files=DATA_FILES,
     options={'py2app': OPTIONS},
     setup_requires=['py2app'],
++    version='1.0.1',  # Thêm version
++    name='LichAmDuong'
 )

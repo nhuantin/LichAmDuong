@@ -17,7 +17,7 @@ jobs:
       - name: 🐍 Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'  # macOS chưa hỗ trợ tốt Python 3.13
+          python-version: '3.11'  # Python 3.13 chưa hỗ trợ tốt trên macOS
 
       - name: 📦 Install dependencies
         run: |
@@ -39,7 +39,7 @@ jobs:
           zip -r LichAmDuong.app.zip LichAmDuong.app
 
       - name: 🚀 Upload build artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v3.1.3
         with:
           name: LichAmDuong-macOS
           path: dist/LichAmDuong.app.zip

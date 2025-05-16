@@ -3,12 +3,12 @@ from setuptools import setup
 APP = ['LichAmDuong.py']
 DATA_FILES = [
     ('fonts', ['fonts/arial.ttf']),
-    ('icons', ['icon.icns', 'icon.ico'])
+    ('icons', ['icons/icon.icns', 'icons/icon.ico'])
 ]
 
 OPTIONS = {
     'argv_emulation': False,
-    'iconfile': 'icon.icns',
+    'icons/icon.icns',
     'packages': ['pystray', 'PIL', 'lunarcalendar'],
     'includes': [
         'pystray',

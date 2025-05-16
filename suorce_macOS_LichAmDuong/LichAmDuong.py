@@ -2,6 +2,7 @@ import os
 import sys
 import time
 import pystray
+import platform
 import calendar
 import requests
 import threading
@@ -20,26 +21,29 @@ from lunarcalendar import Converter, Solar, Lunar, DateNotExist
 def check_update():
     current_version = "1.0.1"
     try:
-        # Thêm xác thực SSL và kiểm tra hash
         version_url = "https://raw.githubusercontent.com/nhuantin/LichAmDuong/main/version.json" 
-        response = requests.get(version_url, verify=True)  # Bật xác thực SSL
+        response = requests.get(version_url, verify=True)
+        
         if response.status_code != 200:
             return
         
         data = response.json()
         if version.parse(data["version"]) > version.parse(current_version):
-            # Hiển thị thông báo cho người dùng thay vì tự động tải
++            # Thêm platform detection chính xác
++            os_name = platform.system().lower()
++            if os_name == 'darwin':
++                url = data.get('dmg_url')
++            elif os_name == 'windows':
++                url = data.get('exe_url')
++            else:
++                url = None
+
             user_choice = messagebox.askyesno(
                 "Cập nhật", 
                 f"Phiên bản mới {data['version']} đã có. Bạn có muốn tải về không?"
             )
-            if user_choice:
-                os_name = platform.system()
-                url = data.get("exe_url") if os_name == "Windows" else data.get("dmg_url")
-                if url:
-                    webbrowser.open(url)
-                else:
-                    print("Không tìm thấy URL tải về.")
+            if user_choice and url:
+                webbrowser.open(url)
     except Exception as e:
         print(f"Lỗi cập nhật: {str(e)}")
 if __name__ == "__main__":

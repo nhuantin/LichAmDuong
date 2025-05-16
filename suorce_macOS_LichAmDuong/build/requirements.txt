@@ -1,9 +1,1 @@
-# requirements.txt
-pystray==0.19.2
-requests==2.31.0
-Pillow==10.0.0      # Thay thế cho PIL
-packaging==23.2
-lunarcalendar==0.0.9
-py2app==0.28.6
-pyobjc==9.2         # Quan trọng cho macOS integration
-python-dateutil==2.8.2
+

@@ -16,6 +16,16 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: 🔍 Verify Required Files
+        run: |
+          cd suorce_macOS_LichAmDuong
+          if [ ! -f "icons/icon.icns" ]; then
+            echo "❌ Error: icon.icns not found!"
+            exit 1
+          fi
+          [ -f "fonts/arial.ttf" ] || { echo "❌ Error: Font file missing!"; exit 1; }
+          echo "✅ All required files exist"
+
       - name: 🐍 Set up Python
         uses: actions/setup-python@v5
         with:

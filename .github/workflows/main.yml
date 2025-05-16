@@ -39,7 +39,7 @@ jobs:
           zip -r LichAmDuong.app.zip LichAmDuong.app
 
       - name: 🚀 Upload build artifact
-        uses: actions/upload-artifact@v3.1.3
+        uses: actions/upload-artifact@v3
         with:
           name: LichAmDuong-macOS
           path: dist/LichAmDuong.app.zip

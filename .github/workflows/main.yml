@@ -4,7 +4,7 @@ on:
   push:
     tags:
       - 'v1.0.1*'
-  workflow_dispatch:  # Cho phép chạy tay từ giao diện GitHub
+  workflow_dispatch:
 
 jobs:
   build:
@@ -17,7 +17,7 @@ jobs:
       - name: 🐍 Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'  # Python 3.13 chưa hỗ trợ tốt trên macOS
+          python-version: '3.11'
 
       - name: 📦 Install dependencies
         run: |

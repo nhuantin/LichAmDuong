@@ -12,38 +12,42 @@ jobs:
 
     steps:
       - name: 📥 Checkout code
--        uses: actions/checkout@v3
-+        uses: actions/checkout@v4
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: 🐍 Set up Python
--        uses: actions/setup-python@v4
-+        uses: actions/setup-python@v5
+        uses: actions/setup-python@v5
         with:
--          python-version: '3.11'
-+          python-version: '3.11'
+          python-version: '3.11'
 
       - name: 📦 Install dependencies
         run: |
+          cd suorce_macOS_LichAmDuong
           python -m pip install --upgrade pip
-+          pip install wheel setuptools
+          pip install wheel setuptools
           pip install -r requirements.txt
--          pip install py2app
 
       - name: 🛠 Build macOS app with py2app
         run: |
-+          rm -rf dist build  # Clean previous builds
+          cd suorce_macOS_LichAmDuong
+          rm -rf dist build
           python setup.py py2app
 
+      - name: 📦 Package application
+        run: |
+          cd suorce_macOS_LichAmDuong/dist
+          zip -r LichAmDuong.app.zip LichAmDuong.app
+
       - name: 🚀 Upload build artifact
--        uses: actions/upload-artifact@v3
-+        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4
         with:
           name: LichAmDuong-macOS
-          path: dist/LichAmDuong.app.zip
+          path: suorce_macOS_LichAmDuong/dist/LichAmDuong.app.zip
 
       - name: 📝 Create GitHub Release
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ github.ref_name }}
-          files: dist/LichAmDuong.app.zip
+          files: suorce_macOS_LichAmDuong/dist/LichAmDuong.app.zip

@@ -12,10 +12,10 @@ jobs:
 
     steps:
       - name: 📥 Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4  # Nâng cấp lên phiên bản mới nhất
 
       - name: 🐍 Set up Python 3.11
-        uses: actions/setup-python@v4  # SỬA LẠI ACTION Ở ĐÂY
+        uses: actions/setup-python@v5  # Phiên bản mới nhất của setup-python
         with:
           python-version: '3.11'
 
@@ -39,7 +39,7 @@ jobs:
           zip -r LichAmDuong.app.zip LichAmDuong.app
 
       - name: 🚀 Upload build artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4  # Sử dụng phiên bản v4 mới nhất
         with:
           name: LichAmDuong-macOS
           path: dist/LichAmDuong.app.zip

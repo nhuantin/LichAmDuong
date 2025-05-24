@@ -8,7 +8,6 @@ DATA_FILES = [
 
 OPTIONS = {
     'argv_emulation': False,
-    'icons/icon.icns',
     'packages': ['pystray', 'PIL', 'lunarcalendar'],
     'includes': [
         'pystray',

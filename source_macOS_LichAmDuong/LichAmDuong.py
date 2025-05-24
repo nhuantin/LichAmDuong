@@ -772,7 +772,7 @@ class VietnameseCalendarApp:
             print(f"Lỗi thiết lập icon: {e}")
 
     def get_icon_path(self):
-        path = resource_path("icon.ico")
+        path = resource_path("icon.icns")
         if not os.path.exists(path):
             print(f"Cảnh báo: Không tìm thấy icon tại {path}")
         return path

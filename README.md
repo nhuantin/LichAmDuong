@@ -7,4 +7,4 @@ Lịch Âm Dương có ngày Vía ngày ăn chay Phật Lịch trong Phật giá
 <img width="450" alt="ảnh miniẩn các ô trông ngày" src="https://github.com/user-attachments/assets/636565df-411e-493f-a27e-fb02b0053912" />
 
 
-<img width="550" alt="ảnh miniẩn các ô trông ngày" src="https://github.com/user-attachments/assets/eb9001ff-9594-40fa-9585-4858efb4fac9" />
+<img width="570" alt="ảnh miniẩn các ô trông ngày" src="https://github.com/user-attachments/assets/eb9001ff-9594-40fa-9585-4858efb4fac9" />

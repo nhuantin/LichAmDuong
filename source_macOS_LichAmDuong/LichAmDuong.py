@@ -38,12 +38,12 @@ def check_update():
             else:
                 url = None
 
-         user_choice = messagebox.askyesno(
-              "Cập nhật", 
-              f"Phiên bản mới {data['version']} đã có. Bạn có muốn tải về không?"
-          )
-         if user_choice and url:
-              webbrowser.open(url)
+             user_choice = messagebox.askyesno(
+                  "Cập nhật", 
+                  f"Phiên bản mới {data['version']} đã có. Bạn có muốn tải về không?"
+              )
+             if user_choice and url:
+                  webbrowser.open(url)
     except Exception as e:
         print(f"Lỗi cập nhật: {str(e)}")
 if __name__ == "__main__":

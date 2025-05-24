@@ -18,7 +18,7 @@ jobs:
 
       - name: 🔍 Verify Required Files
         run: |
-          cd suorce_macOS_LichAmDuong
+          cd source_macOS_LichAmDuong
           if [ ! -f "icons/icon.icns" ]; then
             echo "❌ Error: icon.icns not found!"
             exit 1
@@ -33,31 +33,31 @@ jobs:
 
       - name: 📦 Install dependencies
         run: |
-          cd suorce_macOS_LichAmDuong
+          cd source_macOS_LichAmDuong
           python -m pip install --upgrade pip
           pip install wheel setuptools
           pip install -r requirements.txt
 
       - name: 🛠 Build macOS app with py2app
         run: |
-          cd suorce_macOS_LichAmDuong
+          cd source_macOS_LichAmDuong
           rm -rf dist build
           python setup.py py2app
 
       - name: 📦 Package application
         run: |
-          cd suorce_macOS_LichAmDuong/dist
+          cd source_macOS_LichAmDuong/dist
           zip -r LichAmDuong.app.zip LichAmDuong.app
 
       - name: 🚀 Upload build artifact
         uses: actions/upload-artifact@v4
         with:
           name: LichAmDuong-macOS
-          path: suorce_macOS_LichAmDuong/dist/LichAmDuong.app.zip
+          path: source_macOS_LichAmDuong/dist/LichAmDuong.app.zip
 
       - name: 📝 Create GitHub Release
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ github.ref_name }}
-          files: suorce_macOS_LichAmDuong/dist/LichAmDuong.app.zip
+          files: source_macOS_LichAmDuong/dist/LichAmDuong.app.zip

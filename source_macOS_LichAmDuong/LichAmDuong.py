@@ -29,14 +29,14 @@ def check_update():
         
         data = response.json()
         if version.parse(data["version"]) > version.parse(current_version):
-+           # Thêm platform detection chính xác
-+           os_name = platform.system().lower()
-+           if os_name == 'darwin':
-+               url = data.get('dmg_url')
-+           elif os_name == 'windows':
-+               url = data.get('exe_url')
-+           else:
-+               url = None
+            # Thêm platform detection chính xác
+            os_name = platform.system().lower()
+            if os_name == 'darwin':
+                url = data.get('dmg_url')
+            elif os_name == 'windows':
+                url = data.get('exe_url')
+            else:
+                url = None
 
          user_choice = messagebox.askyesno(
               "Cập nhật", 

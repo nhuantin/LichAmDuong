@@ -3,7 +3,7 @@ from setuptools import setup
 APP = ['LichAmDuong.py']
 DATA_FILES = [
     ('fonts', ['fonts/arial.ttf']),
-    ('icons', ['icons/icon.icns', 'icons/icon.ico'])
+    ('icons', ['icons/icon.icns', 'icons/icon.icns'])
 ]
 
 OPTIONS = {

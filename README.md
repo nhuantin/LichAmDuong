@@ -4,7 +4,7 @@ Lịch Âm Dương có ngày Vía, tới ngày Vía các ô trong ngày đổi s
 
 ![Lịch đầy đủ có ô lịch tuần](https://github.com/user-attachments/assets/e20122b9-ade7-4413-b52e-d73524528ba2)
 
-![Hiện ảnh ngày vía ẩn ô lịch tuần](https://github.com/user-attachments/assets/636565df-411e-493f-a27e-fb02b0053912)
+![Hiện ảnh ngày vía ẩn ô lịch tuần](https://github.com/user-attachments/assets/ba5ef748-7291-4a45-a63a-0694528c7db4)
 
 ![Ẩn ô lịch tuần](https://github.com/user-attachments/assets/5393d6a8-717b-4d40-82fb-d3e8af48ac05)
 

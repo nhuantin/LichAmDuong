@@ -7,7 +7,7 @@ Lịch Âm Dương có ngày Vía, tới ngày Vía các ô trong ngày đổi s
 
 <img width="450" alt="ảnh miniẩn các ô trông ngày" src="https://github.com/user-attachments/assets/636565df-411e-493f-a27e-fb02b0053912" />
 
-<img width="558" alt="Ảnh chụp màn hình 2025-05-24 163323" src="https://github.com/user-attachments/assets/5393d6a8-717b-4d40-82fb-d3e8af48ac05" />
+![Icon system_tray](https://github.com/user-attachments/assets/5393d6a8-717b-4d40-82fb-d3e8af48ac05)
 
-![Ảnh chụp màn hình (9)](https://github.com/user-attachments/assets/ce1eac6d-e81e-485b-b0f5-20c827e16271)
+![Icon system_tray](https://github.com/user-attachments/assets/ce1eac6d-e81e-485b-b0f5-20c827e16271)
 
